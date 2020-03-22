@@ -12,7 +12,7 @@ var dateIn = document.getElementById('timeHeals').value;
 
 	if(  dateIn < dateCur ){
 		alert('Event is in the past!');
-	} else(dateIn == dateCur) {
+	} else if(dateIn == dateCur) {
 		alert('Event cannot start today');	
 	}
 }
@@ -29,6 +29,11 @@ var eH = enTime.getHours();
 var cM = staTime.getMinutes();
 var eM = enTime.getMinutes();
 
+/* you also might be able to do there 2 checks in one if
+	if(cH < eH || cM < eM) {
+		alert('Times are Wrong!');
+	}
+*/
 	
 	if(cH < eH ){
 		alert('Times are wrong!');
@@ -37,7 +42,7 @@ var eM = enTime.getMinutes();
 	if(  cM < eM ){
 		alert('Times are wrong!');
 	}
-	
-	
+// be sure to close off your fubctions 
+}	
 	
 </script>

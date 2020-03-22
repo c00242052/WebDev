@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Dominik Lipinski | C00242052 |
+Pub Stock Control Project | Pierce, Eoin, Ignas |
+Adding an event  to the database
+Notes for this page:
+No Auto-increament
+<li><a href="" title="">Event Options</a></li>
+-->
+	<head>
+		<title>Add Event</title>
+		<meta charset="utf-8">
+		<!-- Css and facicon for the website, group CSS -->
+		<link href="../css/master.css" rel="stylesheet">
+		<link href="../css/main.css" rel="stylesheet">
+		<!-- My own css and Javascript -->
+		<link href="../dom/dom.css" rel="stylesheet">
+		<script src="addEvent.js"></script>
+		
+		<link rel="icon" href="/dom/calendar-icon.png" type="image/png">
+	</head>	<!-- End of head -->
+	<body>
+  <!-- for navigation -->
+		<div class=stripes>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+<a class="top"></a>
+		<br>
+		<main>
+			<hr>
+			<title>Events: Adding </title>
+			<body>
+			<h1> Add Event </h1>
+      <br>
+      <form action="confirm.php" method="post">
+		  <ul class="navLinks">
+      <div class="AEvent">
+  		<br>
+  		<br>
+  			<label for="eventType">Event Type:</label>
+			<select id="eventType" name="eventType" required>
+				<option></option> <!-- Empty so it makes the user to select the option with value -->
+  				<option value="Party">Party</option>
+ 				<option value="Sponsor">Sponsor</option>
+  				<option value="Student">Student</option>
+  				<option value="Marriage">Marriage</option>
+				<option value="Other">Other</option>
+			</select>
+  		<br>
+  		<br>
+		  <!-- Prevent user from entering the past data -->
+  			<label for="eventDate">Event Date:</label>
+  			<input type="date" id="timeHeals" name="eventDate" oninput="dateCheckerer()" placeholder="DD/MM/YYYY" required>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+		<!-- <input type="date" id="txtDate" /> -->
+		<br>
+  		<br>
+		  	<!-- Make sure eventStart time is lower than eventEnd -->
+  			<label for="eventStart">Start of Event</label>
+  			<input type="time" id="beTime" name="eventStart" oninput="comTime()" placeholder="09:00" required >
+  		<br>
+  		<br>
+		<br>
+		  	<!-- Make sure eventEnd is greater than eventStart, times should also should not be the same -->
+  			<label for="eventEnd">End of Event:</label>
+  			<input type="time" id="cloTime" name="eventEnd" oninput="comTime()" placeholder="22:00" required>
+  		<br>
+  		<br>
+		<br>
+			<label for="durEnd">Durantion of Event(in days):</label>
+  			<input type="number" name="dEnd" placeholder="2" pattern="[0-9]{2}" required>
+  		<br>
+  		<br>
+  		<br>
+		  	<label for="eventDes">Description of Event:</label>	
+		<br>
+		<br>
+		  	<textarea name="eventDes" placeholder="Describe the event." rows="5" cols="25"></textarea>
+		<br>
+  		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		  	<!-- Get values from Staff website -->
+  			<label for="staffCharge">Staff in charge:</label>
+		  <select id="staffId" name="staffId" required  >
+		<?php
+    
+			$query = "SELECT staffID FROM Staff";
+   			$result = mysql_query($query);
+    		while($row=mysql_fetch_array($result, MYSQL_ASSOC)){                                                 
+      		echo "<option value='".$row['id']."'>".$row['sectionName']."</option>";
+    			}
+
+			?>
+		  </select>
+  		<br>
+  		<br>
+  		<br>
+        	<!-- Ask about submit -->
+		    <input type="submit" value="Add Event">
+		  </ul>
+        </form>
+		
+		<form action="eventMain.php">
+		<input type="submit" value="Return to Event Main">
+		</form>
+		
+		</div>
+		</main>			<!-- End of main -->
+
+	</body>			<!-- End of body -->
+</html>			<!-- End of html -->
